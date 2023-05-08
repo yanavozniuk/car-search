@@ -29,7 +29,7 @@ module.exports = merge(common, {
       files: Path.resolve(__dirname, '../src'),
     }),
     new StylelintPlugin({
-      files: Path.join('src', '**/*.s?(a|c)ss'),
+      files: Path.join('src', '**/*.s?(a|c)ss')
     }),
   ],
   module: {

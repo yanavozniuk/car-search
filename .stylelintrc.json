@@ -1,3 +1,4 @@
 {
-  "extends": "stylelint-config-standard"
+  "extends": "stylelint-config-standard",
+  "ignoreProperties": ["transform", "columns","appearance", "text-size-adjust"]
 }
