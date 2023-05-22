@@ -31,6 +31,10 @@ module.exports = merge(common, {
     new StylelintPlugin({
       files: Path.join('src', '**/*.s?(a|c)ss')
     }),
+    new Webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ],
   module: {
     rules: [
