@@ -60,6 +60,7 @@
     "@babel/polyfill": "^7.12.1",
     "core-js": "^3.26.1",
     "jquery": "^3.7.0",
+    "jquery-validation": "^1.19.5",
     "slick-carousel": "^1.8.1"
   }
 }

@@ -222,6 +222,10 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
+input:-internal-autofill-selected {
+  background-color: $primary-color;
+}
+
 /**
  * Correct the padding in Firefox.
  */

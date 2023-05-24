@@ -61,9 +61,18 @@
               <div class="title">
                 Хочу <span>підбір авто</span>
               </div>
-                <input type="text" name="name">
-                <input type="text" name="phone">
-                <button class="btn-main">залишити заявку</button>
+              <form method="post" role="form" class="contact-form" action="mail.php">
+                <div class="input-container">
+                  <i class="icon-user"></i>
+                  <input type="text" name="name" placeholder="Ваше ім’я" />
+                  <div class=""></div>
+                </div>
+                <div class="input-container">
+                  <i class="icon-phone"></i>
+                  <input type="text" name="phone" placeholder="Ваш телефон" />
+                </div>
+                <button type="submit" class="btn-main">залишити заявку</button>
+              </form>
             </div>
           </div>
         </div>
@@ -565,9 +574,17 @@
                   з вами <span>найближчим часом</span>
                 </p>
               </div>
-                <input type="text" name="name">
-                <input type="text" name="phone">
-                <button class="btn-main">залишити заявку</button>
+                <form method="post" role="form" class="contact-form second-form" action="mail.php">
+                  <div class="input-container">
+                    <i class="icon-user"></i>
+                    <input type="text" name="name" placeholder="Ваше ім’я" />
+                  </div>
+                  <div class="input-container">
+                    <i class="icon-phone"></i>
+                    <input type="text" name="phone" placeholder="Ваш телефон" />
+                  </div>
+                  <button type="submit" class="btn-main">залишити заявку</button>
+                </form>
             </div>
           </div>
         </div>
@@ -628,8 +645,57 @@
       </div>
     </div>
   </div>
-  <footer class="cs-footerd">
-  
+  <footer class="cs-footer">
+    <div class="footer-container">
+      <div class="logo">
+        <a href="/">
+          <img src="./images/Logo.svg" alt="Logo">
+        </a>
+        <p>© Car Search, 2023</p>
+      </div>
+      <div class="menu">
+        <a href="#stepsOfWork">Етапи роботи</a>
+        <a href="#services">Послуги</a>
+        <a href="#whyUs">Чому ми</a>
+        <a href="#reviews">Відгуки</a>
+      </div>
+      <div class="contacts-container">
+        <div class="info">
+          <div class="may-call">
+            <p>
+              Дзвінки приймаються:
+            </p>
+            <p>
+              Пн-Пт 8:00-20:00 </br>
+              Сб-Нд 9:00-16:00
+            </p>
+          </div>
+          <div class="social">
+            <a href="https://www.instagram.com/car.search.services/" target="_blank">
+              <i class="icon-instagram"></i>
+            </a>
+            <a href="/" target="_blank">
+              <i class="icon-facebook"></i>
+            </a>
+          </div>
+        </div>
+        <div class="info">
+          <div class="text">
+            <i class="icon-envelope"></i>
+            м.Бровари, вул. Сергія Москаленко 16
+          </div>
+          <div class="text phone">
+            <i class="icon-phone"></i>
+            <a href="tel:380636099390">+38 (063) 609-93-90</a>
+            <a href="tel:380983312157">+38 (098) 331-21-57</a>
+          </div>
+          <div class="text">
+            <i class="icon-envelope"></i>
+            <a href="mailto:сar.search.сompany@ukr.net">сar.search.сompany@ukr.net</a>
+          </div>
+        </div>
+      </div>  
+    </div>
   </footer>
 </div>
 
