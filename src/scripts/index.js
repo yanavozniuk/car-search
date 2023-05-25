@@ -1,40 +1,79 @@
-import("slick-carousel/slick/slick.scss");
-import("slick-carousel/slick/slick-theme.scss");
+import "@fancyapps/fancybox/dist/jquery.fancybox.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import "../styles/index.scss";
-import "slick-carousel";
-import "jquery-validation";
 
 import $ from "jquery";
+import "slick-carousel";
+import "jquery-validation";
+import "@fancyapps/fancybox";
+
+// $(".steps-of-work").scroll(() => {
+//   const e = $(".purchase-process-car__tiles");
+//   const t = $(".purchase-process-car__tiles li:last-child");
+//   const n = $(".purchase-process-car__tile-circle");
+//   const r = e.offset();
+//   const i = r.top;
+//   const o = r.height;
+//   const a = t.offsetHeight;
+//   console.info("s, l", e, t);
+//   $(".line").css({ height: "2px", maxHeight: "100%" });
+//   if ($(window).innerHeight() - (i + $(window).innerHeight() / 2) > 0) {
+//     const s = $(window).innerHeight() - (i + $(window).innerHeight() / 2);
+//     const l = o - a - 1.5 * n[0].offset().height;
+
+//     this.lineHeight = "".concat(s, "px");
+//     this.maxHeight = "".concat(l, "px");
+//   } else {
+//     this.lineHeight = 0;
+//     n.forEach(function (e) {
+//       e.offset().top < $(window).innerHeight() / 2 + 40
+//         ? e.nextElementSibling.classList.add("animate")
+//         : e.nextElementSibling.classList.remove("animate");
+//     });
+//   }
+// });
+
 
 $(document).ready(() => {
-  $('a').on('click', function(event) {
-    if (this.hash !== '') {
+  $("a").on("click", function (event) {
+    if (this.hash !== "") {
       event.preventDefault();
       var hash = this.hash;
       var top = $(hash).offset().top;
 
       window.location.hash = hash;
 
-      $('html, body').animate({
-        scrollTop: top - 120
+      $("html, body").animate({
+        scrollTop: top - 120,
       }, 500);
     }
   });
 
   $(".reviews-slider").slick({
     centerMode: true,
-    centerPadding: "60px",
+    centerPadding: "80px",
     slidesToShow: 3,
     dots: true,
     variableWidth: true,
+    infinite: true,
+    autoplay: true,
     prevArrow:
       '<div class="btn-slider btn-prev"><i class="icon-arrow-left"></i></div>',
     nextArrow:
       '<div class="btn-slider btn-next"><i class="icon-arrow-right"></i></div>',
     responsive: [
       {
-        breakpoint: 900,
+        breakpoint: 1090,
+        settings: {
+          arrows: false,
+          centerMode: false,
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 991,
         settings: {
           arrows: false,
           centerMode: false,
@@ -45,17 +84,15 @@ $(document).ready(() => {
         breakpoint: 768,
         settings: {
           arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 2,
+          centerMode: false,
+          slidesToShow: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
           arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
+          centerMode: false,
           slidesToShow: 1,
         },
       },
@@ -73,61 +110,20 @@ $(document).ready(() => {
     $("body,html").toggleClass("overflow");
   });
 
-  $(".reviews-slider").slick({
-    centerMode: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
-    dots: true,
-    variableWidth: true,
-    prevArrow:
-      '<div class="btn-slider btn-prev"><i class="icon-arrow-left"></i></div>',
-    nextArrow:
-      '<div class="btn-slider btn-next"><i class="icon-arrow-right"></i></div>',
-    responsive: [
-      {
-        breakpoint: 900,
-        settings: {
-          arrows: false,
-          centerMode: false,
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
-
-  if($(window).width() <= 990) {
-    $('.methods').slick({
+  if ($(window).width() <= 1090) {
+    $(".methods").slick({
       slidesToShow: 3,
       dots: true,
       arrows: false,
-      centerPadding: "30px",
       responsive: [
         {
           breakpoint: 768,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
           },
         },
         {
-          breakpoint: 480,
+          breakpoint: 680,
           settings: {
             slidesToShow: 1,
           },
@@ -136,38 +132,27 @@ $(document).ready(() => {
     });
   }
 
-  $.validator.addMethod("phoneMatch", function(phone_number, element) {
-    phone_number = phone_number.replace(/\s+/g, "");
-    return this.optional(element) || phone_number.length > 9 && 
-    phone_number.match(/^(\+?3-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
-}, "Будь ласка, введіть вірний номер");
+  $.validator.addMethod(
+    "phoneMatch",
+    function (phone_number, element) {
+      phone_number = phone_number.replace(/\s+/g, "");
+      return (
+        this.optional(element) ||
+        (phone_number.length > 9 &&
+          phone_number.match(
+            /^(\+?3-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/
+          ))
+      );
+    },
+    "Будь ласка, введіть вірний номер"
+  );
 });
+
 $(window).resize(function () {
   if ($(window).width() <= 1090) {
     $(".cs-menu-container .cs-menu-item").appendTo(".mobile-menu");
   } else {
     $(".mobile-menu .cs-menu-item").appendTo(".cs-menu-container");
-  }
-  if($(window).width() <= 990) {
-    $('.methods').slick({
-      slidesToShow: 3,
-      dots: true,
-      arrows: false,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-          },
-        },
-      ],
-    });
   }
 });
 
@@ -182,18 +167,18 @@ $(".contact-form").each(function () {
       },
       phone: {
         required: true,
-        phoneMatch: true
+        phoneMatch: true,
       },
     },
     messages: {
       name: {
         required: "Ввудіть, будь ласка, ім/'я",
-        minlength: "Мінімальна кількість символів 2"
+        minlength: "Мінімальна кількість символів 2",
       },
     },
-    errorPlacement: (error, element)=> {
-      console.info('errorPlacement', error.messages);
-      console.info('element', element);
+    errorPlacement: (error, element) => {
+      console.info("errorPlacement", error.messages);
+      console.info("element", element);
     },
     submitHandler: function (form) {
       var thisForm = $(form);
@@ -224,44 +209,13 @@ $(".contact-form").each(function () {
     },
 
     success: () => {},
-    highlight: (element, errorClass) =>  {
-      console.info('highlight', errorClass);
+    highlight: (element, errorClass) => {
+      console.info("highlight", errorClass);
       $(element).addClass("error");
     },
-    unhighlight: (element, errorClass, validClass) =>  {
-      console.info('unhighlight', errorClass, validClass);
+    unhighlight: (element, errorClass, validClass) => {
+      console.info("unhighlight", errorClass, validClass);
       $(element).removeClass("error");
     },
   });
 });
-
-// const token = '74f7998c411a346d6ca53eab4aae5e23';
-// const username = 'ya.vozniuk';
-// const num_photos = 40;
-// $.ajax({
-//   url: 'https://api.instagram.com/v1/users/search',
-//   dataType: 'jsonp',
-//   type: 'GET',
-//   data: {access_token: token, q: username},
-//   success: (data) => {
-//     console.log('data', data);
-//     $.ajax({
-//       url: 'https://api.instagram.com/v1/users/' + data.data[0].id + '/media/recent',
-//       dataType: 'jsonp',
-//       type: 'GET',
-//       data: {access_token: token, count: num_photos},
-//       success: (data2) => {
-//         console.log('data2', data2);
-//         for(let x in data2.data){
-//           $('.instagram').append('<div><img src="'+data2.data[x].images.thumbnail.url+'"></div>');
-//         }
-//           },
-//       error: (data2) => {
-//         console.log('error data2', data2);
-//       }
-//     });
-//   },
-//   error: (data) => {
-//     console.log(data);
-//   }
-// });
