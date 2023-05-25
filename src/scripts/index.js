@@ -8,6 +8,7 @@ import $ from "jquery";
 import "slick-carousel";
 import "jquery-validation";
 import "@fancyapps/fancybox";
+import "inputmask/dist/jquery.inputmask";
 
 // $(".steps-of-work").scroll(() => {
 //   const e = $(".purchase-process-car__tiles");
@@ -37,7 +38,12 @@ import "@fancyapps/fancybox";
 
 
 $(document).ready(() => {
-  $("a").on("click", function (event) {
+  $('a.top-anchor').on('click', function(e) {
+    e.preventDefault();
+    $('body, html').scrollTop(0);
+  });
+
+  $("a.menu-link").on("click", function (event) {
     if (this.hash !== "") {
       event.preventDefault();
       var hash = this.hash;
@@ -58,7 +64,7 @@ $(document).ready(() => {
     dots: true,
     variableWidth: true,
     infinite: true,
-    autoplay: true,
+    // autoplay: true,
     prevArrow:
       '<div class="btn-slider btn-prev"><i class="icon-arrow-left"></i></div>',
     nextArrow:
@@ -69,6 +75,7 @@ $(document).ready(() => {
         settings: {
           arrows: false,
           centerMode: false,
+          variableWidth: false,
           slidesToShow: 2,
         },
       },
@@ -77,25 +84,10 @@ $(document).ready(() => {
         settings: {
           arrows: false,
           centerMode: false,
+          variableWidth: false,
           slidesToShow: 1,
         },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: false,
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: false,
-          slidesToShow: 1,
-        },
-      },
+      }
     ],
   });
 
@@ -107,6 +99,9 @@ $(document).ready(() => {
 
   $(".menu-button").on("click", () => {
     $(".burger, .mobile-menu, .cs-header").toggleClass("open");
+    $("a.menu-link").on("click", () =>{
+      $(".burger, .mobile-menu, .cs-header").removeClass("open");
+    });
     $("body,html").toggleClass("overflow");
   });
 
@@ -132,20 +127,7 @@ $(document).ready(() => {
     });
   }
 
-  $.validator.addMethod(
-    "phoneMatch",
-    function (phone_number, element) {
-      phone_number = phone_number.replace(/\s+/g, "");
-      return (
-        this.optional(element) ||
-        (phone_number.length > 9 &&
-          phone_number.match(
-            /^(\+?3-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/
-          ))
-      );
-    },
-    "Будь ласка, введіть вірний номер"
-  );
+  $("input[name='phone']").inputmask({"mask": "(099)-999-99-99"});
 });
 
 $(window).resize(function () {
@@ -157,7 +139,6 @@ $(window).resize(function () {
 });
 
 $(".contact-form").each(function () {
-  //Change
   var th = $(this);
 
   th.validate({
@@ -166,55 +147,48 @@ $(".contact-form").each(function () {
         required: true,
       },
       phone: {
-        required: true,
-        phoneMatch: true,
-      },
+        required: true
+      }
     },
     messages: {
       name: {
-        required: "Ввудіть, будь ласка, ім/'я",
-        minlength: "Мінімальна кількість символів 2",
+        required: "Ввeдіть, будь ласка, ім'я"
       },
+      phone: {
+        required: "Ви не вказали номер телефонy"
+      }
     },
     errorPlacement: (error, element) => {
-      console.info("errorPlacement", error.messages);
-      console.info("element", element);
+      error.appendTo(element.parent('div'));
     },
-    submitHandler: function (form) {
+    submitHandler: (form) => {
       var thisForm = $(form);
-      console.log(thisForm.serialize());
 
       $.ajax({
         type: "POST",
-        url: th.attr("action"),
-        data: th.serialize(),
+        url: thisForm.attr("action"),
+        data: thisForm.serialize(),
       }).done(function () {
-        // Done Functions
-        // $.fancybox.close();
-        // $.fancybox.open([
-        //   {
-        //     src: "#thanks",
-        //   },
-        // ]);
+        $.fancybox.open([
+          {
+            src: "#thanks",
+          },
+        ]);
 
-        // setTimeout(function () {
-        //   //submitForm = false
-        //   $.fancybox.close();
-        // }, 3000);
+        setTimeout(function () {
+          $.fancybox.close();
+        }, 3000);
 
         th.trigger("reset");
-        th.find(".btn_st").addClass("not_active");
       });
       return false;
     },
 
     success: () => {},
-    highlight: (element, errorClass) => {
-      console.info("highlight", errorClass);
+    highlight: (element) => {
       $(element).addClass("error");
     },
-    unhighlight: (element, errorClass, validClass) => {
-      console.info("unhighlight", errorClass, validClass);
+    unhighlight: (element) => {
       $(element).removeClass("error");
     },
   });

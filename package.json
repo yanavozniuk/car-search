@@ -60,6 +60,7 @@
     "@babel/polyfill": "^7.12.1",
     "@fancyapps/fancybox": "^3.5.7",
     "core-js": "^3.30.2",
+    "inputmask": "^5.0.8",
     "jquery": "^3.7.0",
     "jquery-validation": "^1.19.5",
     "slick-carousel": "^1.8.1"
