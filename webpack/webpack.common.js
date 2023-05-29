@@ -22,6 +22,9 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: Path.resolve(__dirname, '../public'), to: 'public' }],
     }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: Path.resolve(__dirname, '../src/.htaccess') }],
+    }),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html'),
     }),

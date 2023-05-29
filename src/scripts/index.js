@@ -138,6 +138,15 @@ $(window).resize(function () {
   }
 });
 
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  if (scroll >= 124) {
+      $('.cs-header').addClass('fixed');
+  } else {
+      $('.cs-header').removeClass('fixed');
+  }
+});
+
 $(".contact-form").each(function () {
   var th = $(this);
 
