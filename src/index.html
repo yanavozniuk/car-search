@@ -7,6 +7,10 @@
   <title>Car-Search</title>
   <meta name="description" content="car-search пошук найкращого авто">
   <script src="//widget.tagembed.com/embed.min.js" type="text/javascript"></script>
+  <link rel='shortcut icon' type='image/favicon.ico' href='/public/favicon.ico'>
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
 </head>
 <body>
 <div class="cs-wrapper">
@@ -63,7 +67,7 @@
               <div class="title">
                 Хочу <span>підбір авто</span>
               </div>
-              <form method="post" role="form" class="contact-form" action="mail.php">
+              <form method="post" role="form" class="contact-form" action="mail.php" enctype="multipart/form-data">
                 <div class="input-container">
                   <i class="icon-user"></i>
                   <input type="text" name="name" placeholder="Ваше ім’я" />
@@ -133,8 +137,6 @@
                   1
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">1</div>
                 </div>
                 <div class="item">
@@ -152,8 +154,6 @@
                   2
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">2</div>
                 </div>
                 <div class="item">
@@ -171,8 +171,6 @@
                   3
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">3</div>
                 </div>
                 <div class="item">
@@ -190,8 +188,6 @@
                   4
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">4</div>
                 </div>
                 <div class="item">
@@ -209,8 +205,6 @@
                   5
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">5</div>
                 </div>
                 <div class="item">
@@ -228,8 +222,6 @@
                   6
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">6</div>
                 </div>
                 <div class="item">
@@ -247,8 +239,6 @@
                   7
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">7</div>
                 </div>
                 <div class="item">
@@ -266,8 +256,6 @@
                   8
                 </div>
                 <div class="purchase-process-car__tile-circle-animate">
-                  <div class="pulse1"></div>
-                  <div class="pulse2"></div>
                   <div class="circle">8</div>
                 </div>
                 <div class="item">
@@ -281,81 +269,6 @@
               </div>
             </div>
           </div>
-
-          <!-- <div class="steps">
-            <div class="item">
-              <div class="icon">
-                <i class="icon-car"></i>
-              </div>
-              <div class="info">
-                <div class="title">Підбір авто</div>
-                <div class="sub-title">Погодження критерій пошуку та часткова передплата (марка, модель, рік випуску, двигун, коробка і тд.)</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-calendar"></i>
-              </div>
-              <div class="info">
-                <div class="title">оцінка строків виконання підбору</div>
-                <div class="sub-title">Залежить від кількості авто на сайтах з продажу автомобілів та ексклюзивності</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-search"></i>
-              </div>
-              <div class="info">
-                <div class="title">пошук авто</div>
-                <div class="sub-title">Початок пошуку та спілкування з продавцем. Експерт знаходить авто на дошках оголошень та надсилає клієнту на погодження</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-eye"></i>
-              </div>
-              <div class="info">
-                <div class="title">огляд авто</div>
-                <div class="sub-title">Огляд фіксується на фото та відео, в кінці клієнт отримує розгорнуту відповідь про стан авто і заключення експерта</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-comment"></i>
-              </div>
-              <div class="info">
-                <div class="title">прийняття рішення</div>
-                <div class="sub-title">Коли авто пройшло всі етапи перевірки і задовільнило вимоги клієнта, експерт обговорює ціну з продавцем</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-users"></i>
-              </div>
-              <div class="info">
-                <div class="title">Реєстрація або доставка</div>
-                <div class="sub-title">Експерт супроводжує клієнта в ТСЦ до закінчення угоди</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-money"></i>
-              </div>
-              <div class="info">
-                <div class="title">Розрахунок</div>
-                <div class="sub-title">Залишок вартості послуги передається експерту після того, як вже встановлені номерні знаки на авто, або авто доставлено клієнту до місця проживання</div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="icon">
-                <i class="icon-camera"></i>
-              </div>
-              <div class="info">
-                <div class="title">Фото / Відео / Відгук</div>
-              </div>
-            </div>
-          </div> -->
-
         </div>
       </div>
     </div>
@@ -753,7 +666,7 @@
                   з вами <span>найближчим часом</span>
                 </p>
               </div>
-                <form method="post" role="form" class="contact-form second-form" action="mail.php">
+                <form method="post" role="form" class="contact-form second-form" action="mail.php" enctype="multipart/form-data">
                   <div class="input-container">
                     <i class="icon-user"></i>
                     <input type="text" name="name" placeholder="Ваше ім’я" />
@@ -890,7 +803,7 @@
       <div class="title">
         Залишіть заявку
       </div>
-      <form method="post" role="form" class="contact-form" action="mail.php">
+      <form method="post" role="form" class="contact-form" action="mail.php" enctype="multipart/form-data">
         <div class="input-container">
           <i class="icon-user"></i>
           <input type="text" name="name" placeholder="Ваше ім’я" />
@@ -908,6 +821,5 @@
     дякуємо за вашу заявку, ми зв'яжемось з вами найближчим часом
   </div>
 </div>
-<!-- <%= require('./templates/base/footer.html').default %> -->
 </body>
 </html>

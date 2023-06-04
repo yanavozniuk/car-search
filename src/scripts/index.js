@@ -179,6 +179,9 @@ $(".contact-form").each(function () {
         type: "POST",
         url: thisForm.attr("action"),
         data: thisForm.serialize(),
+        headers: {
+          'Content-Type':'application/json; odata=verbose'
+        }
       }).done(function () {
         $.fancybox.open([
           {
