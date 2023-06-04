@@ -10,37 +10,36 @@ import "jquery-validation";
 import "@fancyapps/fancybox";
 import "inputmask/dist/jquery.inputmask";
 
-// $(".steps-of-work").scroll(() => {
-//   const e = $(".purchase-process-car__tiles");
-//   const t = $(".purchase-process-car__tiles li:last-child");
-//   const n = $(".purchase-process-car__tile-circle");
-//   const r = e.offset();
-//   const i = r.top;
-//   const o = r.height;
-//   const a = t.offsetHeight;
-//   console.info("s, l", e, t);
-//   $(".line").css({ height: "2px", maxHeight: "100%" });
-//   if ($(window).innerHeight() - (i + $(window).innerHeight() / 2) > 0) {
-//     const s = $(window).innerHeight() - (i + $(window).innerHeight() / 2);
-//     const l = o - a - 1.5 * n[0].offset().height;
-
-//     this.lineHeight = "".concat(s, "px");
-//     this.maxHeight = "".concat(l, "px");
-//   } else {
-//     this.lineHeight = 0;
-//     n.forEach(function (e) {
-//       e.offset().top < $(window).innerHeight() / 2 + 40
-//         ? e.nextElementSibling.classList.add("animate")
-//         : e.nextElementSibling.classList.remove("animate");
-//     });
-//   }
-// });
-
-
 $(document).ready(() => {
-  $('a.top-anchor').on('click', function(e) {
+  var container = $(".purchase-process-car__tiles");
+  const lastTile = $(
+    ".purchase-process-car__tiles .purchase-process-car__tile:last-child"
+  );
+  const tileCircles = $(".purchase-process-car__tile-circle");
+
+  $(".steps-of-work").on("mousewheel", () => {
+    let lineHeight = 0;
+    let maxHeight = 0;
+    const height = container.height();
+    const { top } = container[0].getBoundingClientRect();
+
+    const lastTileHeight = lastTile.height();
+    if ($(window).height() - (top + $(window).height() / 2) > 0) {
+      lineHeight = $(window).height() - (top + $(window).height() / 2);
+      maxHeight = height - lastTileHeight - 1.5 * $(tileCircles[0]).height() + 60;
+    } else
+      lineHeight = 0;
+      tileCircles.each(function () {
+        this.getBoundingClientRect().top < $(window).height() / 2 + 40
+          ? $(this.nextElementSibling).addClass("animate")
+          : $(this.nextElementSibling).removeClass("animate");
+      });
+    $(".line").css({ height: lineHeight, maxHeight: maxHeight });
+  });
+
+  $("a.top-anchor").on("click", function (e) {
     e.preventDefault();
-    $('body, html').scrollTop(0);
+    $("body, html").scrollTop(0);
   });
 
   $("a.menu-link").on("click", function (event) {
@@ -51,9 +50,12 @@ $(document).ready(() => {
 
       window.location.hash = hash;
 
-      $("html, body").animate({
-        scrollTop: top - 120,
-      }, 500);
+      $("html, body").animate(
+        {
+          scrollTop: top - 120,
+        },
+        500
+      );
     }
   });
 
@@ -64,7 +66,7 @@ $(document).ready(() => {
     dots: true,
     variableWidth: true,
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     prevArrow:
       '<div class="btn-slider btn-prev"><i class="icon-arrow-left"></i></div>',
     nextArrow:
@@ -87,7 +89,7 @@ $(document).ready(() => {
           variableWidth: false,
           slidesToShow: 1,
         },
-      }
+      },
     ],
   });
 
@@ -99,7 +101,7 @@ $(document).ready(() => {
 
   $(".menu-button").on("click", () => {
     $(".burger, .mobile-menu, .cs-header").toggleClass("open");
-    $("a.menu-link").on("click", () =>{
+    $("a.menu-link").on("click", () => {
       $(".burger, .mobile-menu, .cs-header").removeClass("open");
     });
     $("body,html").toggleClass("overflow");
@@ -127,7 +129,7 @@ $(document).ready(() => {
     });
   }
 
-  $("input[name='phone']").inputmask({"mask": "(099)-999-99-99"});
+  $("input[name='phone']").inputmask({ mask: "(099)-999-99-99" });
 });
 
 $(window).resize(function () {
@@ -138,12 +140,12 @@ $(window).resize(function () {
   }
 });
 
-$(window).scroll(function() {
+$(window).scroll(function () {
   var scroll = $(window).scrollTop();
   if (scroll >= 124) {
-      $('.cs-header').addClass('fixed');
+    $(".cs-header").addClass("fixed");
   } else {
-      $('.cs-header').removeClass('fixed');
+    $(".cs-header").removeClass("fixed");
   }
 });
 
@@ -156,19 +158,19 @@ $(".contact-form").each(function () {
         required: true,
       },
       phone: {
-        required: true
-      }
+        required: true,
+      },
     },
     messages: {
       name: {
-        required: "Ввeдіть, будь ласка, ім'я"
+        required: "Ввeдіть, будь ласка, ім'я",
       },
       phone: {
-        required: "Ви не вказали номер телефонy"
-      }
+        required: "Ви не вказали номер телефонy",
+      },
     },
     errorPlacement: (error, element) => {
-      error.appendTo(element.parent('div'));
+      error.appendTo(element.parent("div"));
     },
     submitHandler: (form) => {
       var thisForm = $(form);
