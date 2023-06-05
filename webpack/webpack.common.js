@@ -25,6 +25,9 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: Path.resolve(__dirname, '../src/.htaccess') }],
     }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: Path.resolve(__dirname, '../src/mail.php') }],
+    }),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html'),
     }),

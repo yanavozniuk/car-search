@@ -353,6 +353,11 @@ body {
       font-size: 18px;
       line-height: 22px;
     }
+
+    @media only screen and (max-width: 768px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 
   &-social-networks {
@@ -544,6 +549,7 @@ body {
               text-align: center;
 
               a {
+                font-size: 14px;
                 display: block;
               }
             }
@@ -762,6 +768,10 @@ body {
       font-size: 25px;
       color: $lite-blue-color;
     }
+    @media only screen and (max-width: 768px) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   .title {
@@ -902,6 +912,9 @@ body {
           font-size: 18px;
           line-height: 21px;
           text-align: left;
+          @media only screen and (max-width: 768px) {
+            font-size: 14px;
+          }
         }
 
         .sub-title {
@@ -909,6 +922,9 @@ body {
           line-height: 120%;
           text-align: left;
           padding: 0;
+          @media only screen and (max-width: 1090px) {
+            font-size: 12px;
+          }
         }
       }
     }
@@ -918,6 +934,11 @@ body {
         &::after {
           display: none;
         }
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .item {
+        padding: 24px;
       }
     }
   }
@@ -975,6 +996,9 @@ body {
           text-transform: uppercase;
           color: #141414;
           margin-bottom: 5px;
+          @media only screen and (max-width: 768px) {
+            font-size: 16px;
+          }
         }
 
         p {
@@ -1223,6 +1247,7 @@ body {
           overflow: hidden;
           width: 60px;
           height: 60px;
+          min-width: 60px;
           border-radius: 50%;
         }
         .title {
@@ -1254,6 +1279,9 @@ body {
           font-weight: 400;
           font-size: 14px;
           line-height: 120%;
+        }
+        @media only screen and (max-width: 768px) {
+          align-items: flex-start;
         }
       }
     }
@@ -1312,7 +1340,9 @@ body {
 
     @media only screen and (max-width: 768px) {
       max-width: inherit;
+      min-width: inherit;
       width: 500px;
+      margin: 0;
       .slider-item {
         flex-direction: column;
         .photo {
@@ -1331,6 +1361,8 @@ body {
             img {
               width: 24px;
               height: 24px;
+              max-width: 24px;
+              min-width: 24px;
             }
           }
         }
@@ -1453,6 +1485,9 @@ body {
             color: $primary-color;
             display: block;
           }
+          @media only screen and (max-width: 768px) {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -1503,11 +1538,15 @@ body {
         align-items: center;
         font-size: 12px;
         gap: 10px;
+        padding: 12px;
       }
     }
 
     @media only screen and (max-width: 900px) {
       justify-content: center;
+    }
+    @media only screen and (max-width: 768px) {
+      gap: 24px;
     }
   }
 
@@ -1674,12 +1713,12 @@ body {
         }
       }
     }
-    @media only screen and (max-width: 1090px) {
+    @media only screen and (max-width: 1180px) {
       .slick-slide {
         margin: 30px 15px;
       }
     }
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 1180px) {
       .item {
         padding: 55px 30px 30px 30px;
       }
@@ -1788,6 +1827,13 @@ body {
   display: flex;
   position: relative;
   justify-content: flex-start;
+  @media only screen and (max-width: 340px) {
+    .item {
+      .icon {
+        display: none;
+      }
+    }
+  }
 }
 
 .purchase-process-car__tile-circle {
