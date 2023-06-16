@@ -41,33 +41,33 @@ $(document).ready(() => {
           type: "POST",
           url: thisForm.attr("action"),
           data: thisForm.serialize(),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+          body: thisForm.serialize(),
+          dataType: 'json',
+          success: (response) =>{
+            // var submit = $(form).find('button[type="submit"]');
+            // $(".contactResponse").html('Your message has been sent. We will contact you soon.');
+            // submit.text('Sent, Thank you');
+            // submit.attr("disabled", true);
+            console.info('success data', response); 
+            $.fancybox.open([
+              {
+                src: "#thanks",
+              },
+            ]);
           },
-          success: (response)=> { 
-            console.info('success', response.success); 
-          },
-          error: (xhr, status, error)=>{
-              console.log('xhr', xhr); 
-              console.log('error', error); 
-          }
-        }).then(()=> {
-          console.info('then test');
-        }).done(()=> {
-          console.info('done test');
-          $.fancybox.open([
-            {
-              src: "#thanks",
-            },
-          ]);
-    
-          setTimeout(function () {
-            $.fancybox.close();
-          }, 3000);
-          th.trigger("reset");
-        }).fail((error)=> {
-          console.info('fail test', error);
+          // success: (data)=> { 
+          //   console.info('success data', data); 
+          //   $.fancybox.open([
+          //     {
+          //       src: "#thanks",
+          //     },
+          //   ]);
+      
+          //   setTimeout(function () {
+          //     $.fancybox.close();
+          //   }, 3000);
+          //   th.trigger("reset");
+          // },
         });
         return false;
       },
@@ -179,6 +179,76 @@ $(document).ready(() => {
     ],
   });
 
+  $(".instafeed.instafeed-line-one").slick({
+    centerMode: true,
+    centerPadding: "100px",
+    slidesToShow: 4,
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    arrows: false,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          centerMode: false,
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          centerMode: false,
+          slidesToShow: 2,
+        },
+      },
+    ]
+  });
+  $(".instafeed.instafeed-line-two").slick({
+    slidesToShow: 5,
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    arrows: false,
+    speed: 800,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          centerMode: true,
+          centerPadding: "80px",
+        },
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 3,
+          centerMode: true,
+          centerPadding: "80px",
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          centerPadding: "80px",
+        },
+      },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          centerPadding: "80px",
+        },
+      },
+    ]
+  });
+
   if ($(window).width() <= 1090) {
     $(".cs-menu-container .cs-menu-item").appendTo(".mobile-menu");
   } else {
@@ -236,13 +306,13 @@ $(window).resize(function () {
 
 });
 
-// $(window).scroll(function () {
-//   var scroll = $(window).scrollTop();
-//   if (scroll >= 124) {
-//     $(".cs-header").addClass("fixed");
-//   } else {
-//     $(".cs-header").removeClass("fixed");
-//   }
-// });
+$(window).scroll(function () {
+  var scroll = $(window).scrollTop();
+  if (scroll >= 124) {
+    $(".cs-header").addClass("fixed");
+  } else {
+    $(".cs-header").removeClass("fixed");
+  }
+});
 
 
