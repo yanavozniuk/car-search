@@ -49,8 +49,15 @@ $(document).ready(() => {
           url: thisForm.attr("action"),
           data: thisForm.serialize(),
           body: thisForm.serialize(),
-          dataType: 'html',
+          contentType: "application/json; charset=utf-8",
+          dataType: 'json',
           success: () =>{
+            $.fancybox.close([
+              {
+                src: "#request-form",
+              },
+            ]);
+            
             $.fancybox.open([
               {
                 src: "#thanks",
@@ -62,7 +69,7 @@ $(document).ready(() => {
             th.trigger("reset");
           },
           error: (error) => {
-            console.info('error data', {...error}); 
+            console.info('error data', {...error});
           }
         });
         return false;
