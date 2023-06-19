@@ -11,6 +11,10 @@ import "@fancyapps/fancybox";
 import "inputmask/dist/jquery.inputmask";
 
 $(document).ready(() => {
+  $.validator.addMethod("lettersOnly", function(value, element) {
+    return this.optional(element) || /^['a-zA-Zа-яА-Я\s']+$/i.test(value);
+  }, "Ви вказали не вірне ім'я"); 
+
   $(".contact-form").each(function () {
     var th = $(this);
   
@@ -18,6 +22,7 @@ $(document).ready(() => {
       rules: {
         name: {
           required: true,
+          lettersOnly: true,
         },
         phone: {
           required: true,
@@ -26,6 +31,7 @@ $(document).ready(() => {
       messages: {
         name: {
           required: "Ввeдіть, будь ласка, ім'я",
+          lettersonly: "Ви вказали не вірне ім'я"
         },
         phone: {
           required: "Ви не вказали номер телефонy",
@@ -34,40 +40,30 @@ $(document).ready(() => {
       errorPlacement: (error, element) => {
         error.appendTo(element.parent("div"));
       },
-      submitHandler: (form) => {
+      submitHandler: (form, event) => {
         var thisForm = $(form);
+        event.preventDefault();
   
         $.ajax({
           type: "POST",
           url: thisForm.attr("action"),
           data: thisForm.serialize(),
           body: thisForm.serialize(),
-          dataType: 'json',
-          success: (response) =>{
-            // var submit = $(form).find('button[type="submit"]');
-            // $(".contactResponse").html('Your message has been sent. We will contact you soon.');
-            // submit.text('Sent, Thank you');
-            // submit.attr("disabled", true);
-            console.info('success data', response); 
+          dataType: 'html',
+          success: () =>{
             $.fancybox.open([
               {
                 src: "#thanks",
               },
             ]);
+            setTimeout(function () {
+              $.fancybox.close();
+            }, 5000);
+            th.trigger("reset");
           },
-          // success: (data)=> { 
-          //   console.info('success data', data); 
-          //   $.fancybox.open([
-          //     {
-          //       src: "#thanks",
-          //     },
-          //   ]);
-      
-          //   setTimeout(function () {
-          //     $.fancybox.close();
-          //   }, 3000);
-          //   th.trigger("reset");
-          // },
+          error: (error) => {
+            console.info('error data', {...error}); 
+          }
         });
         return false;
       },
@@ -88,7 +84,7 @@ $(document).ready(() => {
   );
   const tileCircles = $(".purchase-process-car__tile-circle");
 
-  $(".steps-of-work").on("mousewheel", () => {
+  const onScroll = () => {
     let lineHeight = 0;
     let maxHeight = 0;
     const height = container.height();
@@ -106,29 +102,36 @@ $(document).ready(() => {
           : $(this.nextElementSibling).removeClass("animate");
       });
     $(".line").css({ height: lineHeight, maxHeight: maxHeight });
-  });
+  };
 
-  $("a.top-anchor").on("click", function (e) {
-    e.preventDefault();
-    $("body, html").scrollTop(0);
-  });
+  // touchmove
+  $(".steps-of-work").on("scroll", onScroll);
+  $(".steps-of-work").on("touchmove", onScroll);
 
-  $("a.menu-link").on("click", function (event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-      var hash = this.hash;
-      var top = $(hash).offset().top;
+  // $("a.top-anchor").on("click", function (e) {
+  //   e.preventDefault();
+  //   $("body, html").scrollTop(0);
+  // });
+  // if($(window).width() >= 1090) {
+    $("a.menu-link").on("click", function (event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+        var hash = this.hash;
+        var top = $(hash).offset().top;
 
-      window.location.hash = hash;
+        window.location.hash = hash;
 
-      $("html, body").animate(
-        {
-          scrollTop: top - 120,
-        },
-        500
-      );
-    }
-  });
+        const test = $(window).width() <= 1090 ? 90 : 120;
+
+        $("html, body").animate(
+          {
+            scrollTop: top - test,
+          },
+          500
+        );
+      }
+    });
+  // }
 
   $(".reviews-slider").slick({
     centerMode: true,
@@ -256,11 +259,13 @@ $(document).ready(() => {
   }
 
   $(".menu-button").on("click", () => {
+    $("body,html").addClass("overflow");
     $(".burger, .mobile-menu, .cs-header").toggleClass("open");
     $("a.menu-link").on("click", () => {
       $(".burger, .mobile-menu, .cs-header").removeClass("open");
+      $("body,html").removeClass("overflow");
     });
-    $("body,html").toggleClass("overflow");
+    
   });
 
   $(".methods").slick({

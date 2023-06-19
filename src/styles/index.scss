@@ -1317,6 +1317,9 @@ body {
           }
         }
       }
+      @media only screen and (max-width: 768px) {
+        max-height: 100%;
+      }
   
       &.slick-center {
         width: 540px;
@@ -1987,6 +1990,24 @@ body {
 
   @media (max-width: 480px) {
     min-width: 100%;
+  }
+}
+
+.thanks-modal-content {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-direction: column;
+  i {
+    font-size: 80px;
+    margin-bottom: 30px;
+    color: $lite-blue-color;
+  }
+  @media only screen and (max-width: 768px) {
+    i {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
   }
 }
 

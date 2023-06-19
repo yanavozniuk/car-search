@@ -70,7 +70,7 @@
               <form method="post" role="form" class="contact-form" action="./mail.php" enctype="multipart/form-data">
                 <div class="input-container">
                   <i class="icon-user"></i>
-                  <input type="text" name="name" placeholder="Ваше ім’я" />
+                  <input type="text" name="name" placeholder="Ваше ім’я" maxlength="20" minlength="2" />
                   <div class=""></div>
                 </div>
                 <div class="input-container">
@@ -712,7 +712,7 @@
                 <form method="post" role="form" class="contact-form second-form" action="./mail.php" enctype="multipart/form-data">
                   <div class="input-container">
                     <i class="icon-user"></i>
-                    <input type="text" name="name" placeholder="Ваше ім’я" />
+                    <input type="text" name="name" placeholder="Ваше ім’я" maxlength="20" minlength="2" />
                   </div>
                   <div class="input-container">
                     <i class="icon-phone"></i>
@@ -976,7 +976,7 @@
       <form method="post" role="form" class="contact-form" action="./mail.php" enctype="multipart/form-data">
         <div class="input-container">
           <i class="icon-user"></i>
-          <input type="text" name="name" placeholder="Ваше ім’я" />
+          <input type="text" name="name" placeholder="Ваше ім’я" maxlength="20" minlength="2" />
           <div class=""></div>
         </div>
         <div class="input-container">
@@ -988,7 +988,10 @@
     </div>
   </div>
   <div class="thanks-modal" id="thanks">
-    дякуємо за вашу заявку, ми зв'яжемось з вами найближчим часом
+    <div class="thanks-modal-content">
+      <i class="icon-comment"></i>
+      <p>Дякуємо за вашу заявку, ми зв'яжемось з вами найближчим часом</p>
+    </div>
   </div>
 </div>
 </body>
